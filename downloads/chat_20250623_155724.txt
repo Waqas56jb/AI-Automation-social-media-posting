@@ -1,0 +1,2 @@
+You: hi
+Bot: Hi there! How can I help you today with your social media automation questions or content creation needs?

@@ -1,17 +1,15 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart University Search</title>
+  <title>AI Social Media Automation</title>
   <!-- Particles.js -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Comic+Sans+MS&display=swap" rel="stylesheet">
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
@@ -24,6 +22,8 @@
       --success-green: #2a9d8f;
       --warning-orange: #f4a261;
       --danger-red: #e63946;
+      --neon-green: #00ff00;
+      --bright-red: #ff0000;
     }
     
     * {
@@ -48,70 +48,209 @@
       z-index: -1;
     }
     
-    .header {
-      padding: 3rem 2rem;
-      text-align: center;
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .navbar-logo {
+      color: var(--white);
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .navbar-logo i {
+      margin-right: 0.5rem;
+      color: var(--light-blue);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
       position: relative;
     }
     
-    .logo {
-      color: var(--white);
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    
-    .tagline {
+    .nav-links a:hover {
       color: var(--light-blue);
-      font-size: 1.3rem;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.6;
     }
     
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--light-blue);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .btn {
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-outline {
+      border: 2px solid var(--white);
+      color: var(--white);
+      background: transparent;
+    }
+    
+    .btn-outline:hover {
+      background: var(--white);
+      color: var(--dark-blue);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .btn-primary {
+      background: var(--light-blue);
+      color: var(--dark-blue);
+      border: 2px solid var(--light-blue);
+    }
+    
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--light-blue);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: var(--white);
+      cursor: pointer;
+    }
+    
+    /* Main Container */
     .main-container {
-      padding: 2rem;
+      padding: 8rem 2rem 2rem;
       max-width: 1400px;
       margin: 0 auto;
     }
     
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      animation: fadeInUp 1s ease;
+    }
+    
+    .hero-title span {
+      color: var(--light-blue);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      animation: fadeInUp 1s ease 0.3s;
+    }
+    
     /* Stats Section */
     .stats-section {
-      margin: 3rem 0;
+      margin: 4rem 0;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      animation: fadeIn 1s ease;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--light-blue);
+      border-radius: 2px;
     }
     
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
       margin-top: 2rem;
     }
     
     .stat-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 2rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2.5rem;
       text-align: center;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      animation: slideUp 1s ease;
     }
     
     .stat-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.2);
     }
     
     .stat-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
       color: var(--light-blue);
     }
     
     .stat-value {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
       background: linear-gradient(to right, var(--light-blue), var(--white));
@@ -120,33 +259,34 @@
     }
     
     .stat-label {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
     }
     
     /* Dashboard Graphs */
     .dashboard-section {
-      margin: 4rem 0;
+      margin: 5rem 0;
     }
     
     .graph-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
     }
     
     .graph-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      animation: slideUp 1s ease 0.2s;
     }
     
     .graph-title {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       margin-bottom: 1.5rem;
       color: var(--white);
       text-align: center;
@@ -155,67 +295,145 @@
     /* Features Section */
     .features-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 4rem 0;
     }
     
     .feature-card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.7);
+      border: 3px dotted var(--bright-red);
+      border-radius: 10px;
+      padding: 1rem 2rem 1.5rem 1rem;
+      transition: all 0.1s;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     }
     
     .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.8);
     }
     
     .feature-icon {
       font-size: 2.5rem;
-      color: var(--primary-blue);
-      margin-bottom: 1rem;
+      color: var(--neon-green);
+      margin-bottom: 0.8rem;
     }
     
     .feature-title {
       color: var(--dark-blue);
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
+      font-size: 1.4rem;
+      margin-bottom: 0.7rem;
+      font-family: 'Comic Sans MS', cursive;
+      font-weight: normal;
     }
     
     .feature-desc {
-      color: #555;
-      line-height: 1.6;
+      color: #333;
+      line-height: 1.5;
+      font-size: 0.9rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    /* Platforms Section */
+    .platforms-section {
+      margin: 5rem 0;
+    }
+    
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    
+    .platform-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      transition: all 0.4s ease;
+      animation: slideUp 1s ease 0.8s;
+    }
+    
+    .platform-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+    
+    .platform-image {
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .platform-content {
+      padding: 1.5rem;
+    }
+    
+    .platform-name {
+      color: var(--dark-blue);
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+    
+    .platform-type {
+      color: var(--primary-blue);
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .platform-desc {
+      color: #444;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    
+    .platform-stats {
+      display: flex;
+      justify-content: space-between;
+      color: var(--dark-blue);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    
+    .compatibility-percentage {
+      background: var(--success-green);
+      color: var(--white);
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
     }
     
     /* Experts Section */
     .experts-section {
-      margin: 4rem 0;
+      margin: 5rem 0;
     }
     
     .experts-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      gap: 2.5rem;
       margin-top: 3rem;
     }
     
     .expert-card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      transition: all 0.4s ease;
+      animation: slideUp 1s ease 0.6s;
     }
     
     .expert-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     }
     
     .expert-image {
@@ -225,12 +443,12 @@
     }
     
     .expert-content {
-      padding: 1.5rem;
+      padding: 2rem;
     }
     
     .expert-name {
       color: var(--dark-blue);
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       margin-bottom: 0.5rem;
       font-weight: 600;
     }
@@ -243,9 +461,9 @@
     }
     
     .expert-desc {
-      color: #555;
+      color: #444;
       font-size: 0.95rem;
-      line-height: 1.5;
+      line-height: 1.6;
       margin-bottom: 1.5rem;
     }
     
@@ -253,130 +471,47 @@
       font-style: italic;
       color: var(--dark-blue);
       padding: 1rem;
-      border-left: 3px solid var(--light-blue);
+      border-left: 4px solid var(--light-blue);
       background: rgba(76, 201, 240, 0.1);
-      border-radius: 0 5px 5px 0;
-    }
-    
-    /* Universities Section */
-    .universities-section {
-      margin: 4rem 0;
-    }
-    
-    .section-title {
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
-      position: relative;
-      display: inline-block;
-      text-align: center;
-      width: 100%;
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--light-blue);
-      border-radius: 2px;
-    }
-    
-    .university-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    
-    .university-card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .university-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    }
-    
-    .university-image {
-      height: 180px;
-      background-size: cover;
-      background-position: center;
-    }
-    
-    .university-content {
-      padding: 1.5rem;
-    }
-    
-    .university-name {
-      color: var(--dark-blue);
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-    
-    .university-location {
-      color: var(--primary-blue);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-    
-    .university-desc {
-      color: #555;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      margin-bottom: 1.5rem;
-    }
-    
-    .university-stats {
-      display: flex;
-      justify-content: space-between;
-      color: var(--dark-blue);
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-    
-    .match-percentage {
-      background: var(--success-green);
-      color: white;
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
+      border-radius: 0 8px 8px 0;
     }
     
     /* Testimonials */
     .testimonials-section {
-      margin: 4rem 0;
+      margin: 5rem 0;
     }
     
     .testimonial-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
+      gap: 2.5rem;
+      margin-top: 3rem;
     }
     
     .testimonial-card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      animation: slideUp 1s ease 1s;
     }
     
     .testimonial-text {
-      color: #555;
+      color: #444;
       font-style: italic;
       margin-bottom: 1.5rem;
-      line-height: 1.6;
+      line-height: 1.7;
+      position: relative;
+    }
+    
+    .testimonial-text::before {
+      content: '"';
+      font-size: 3rem;
+      color: rgba(76, 201, 240, 0.3);
+      position: absolute;
+      top: -1rem;
+      left: -0.5rem;
     }
     
     .testimonial-author {
@@ -385,8 +520,8 @@
     }
     
     .author-avatar {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       background-size: cover;
       background-position: center;
@@ -395,6 +530,7 @@
     
     .author-info h4 {
       color: var(--dark-blue);
+      font-size: 1.2rem;
       margin-bottom: 0.2rem;
     }
     
@@ -406,28 +542,131 @@
     /* CTA Section */
     .cta-section {
       text-align: center;
-      margin: 4rem 0;
+      margin: 6rem 0;
+      padding: 4rem 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease;
     }
     
     .cta-button {
       display: inline-block;
-      padding: 1rem 2.5rem;
-      background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+      padding: 1.2rem 3rem;
+      background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
       color: var(--white);
       border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: 500;
+      font-size: 1.2rem;
+      font-weight: 600;
       text-decoration: none;
-      box-shadow: 0 10px 25px rgba(58, 12, 163, 0.3);
-      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(58, 12, 163, 0.4);
+      transition: all 0.4s ease;
     }
     
     .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(58, 12, 163, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(58, 12, 163, 0.5);
+      background: linear-gradient(135deg, var(--light-blue), var(--primary-blue));
     }
     
-    /* Chatbot Button Styles */
+    /* Footer */
+    .footer {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 5rem 2rem 2rem;
+      position: relative;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+    }
+    
+    .footer-logo i {
+      margin-right: 0.5rem;
+      color: var(--light-blue);
+    }
+    
+    .footer-about {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .social-links a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      transition: all 0.4s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--light-blue);
+      color: var(--dark-blue);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .footer-links h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+      font-weight: 600;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--light-blue);
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 3rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+    
+    /* Chatbot Button */
     .chatbot-container {
       position: fixed;
       bottom: 30px;
@@ -440,7 +679,7 @@
       height: 70px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--light-blue), var(--primary-blue));
-      color: white;
+      color: var(--white);
       border: none;
       font-size: 1.8rem;
       cursor: pointer;
@@ -448,13 +687,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s;
+      transition: all 0.4s;
       animation: pulse 2s infinite;
     }
     
     .chatbot-btn:hover {
       transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       animation: none;
     }
     
@@ -463,22 +702,114 @@
       50% { transform: scale(1.05); }
     }
     
-    /* Responsive Adjustments */
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .platform-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 2rem;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .features-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
     @media (max-width: 768px) {
-      .logo {
+      .main-container {
+        padding: 6rem 1.5rem 1.5rem;
+      }
+      
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      
+      .section-title {
         font-size: 2rem;
-      }
-      
-      .tagline {
-        font-size: 1rem;
-      }
-      
-      .feature-card, .university-card, .testimonial-card, .expert-card {
-        padding: 1.5rem;
       }
       
       .graph-container {
         grid-template-columns: 1fr;
+      }
+      
+      .stat-card, .platform-card, .testimonial-card, .expert-card {
+        padding: 2rem;
+      }
+      
+      .features-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .platform-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .navbar {
+        padding: 1rem 1.5rem;
+      }
+      
+      .navbar-logo {
+        font-size: 1.5rem;
+      }
+      
+      .auth-buttons .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .hero-section {
+        padding: 3rem 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
       }
       
       .chatbot-btn {
@@ -486,195 +817,246 @@
         height: 60px;
         font-size: 1.5rem;
       }
+      
+      .feature-card {
+        padding: 1rem;
+      }
+      
+      .platform-content {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <div id="particles-js"></div>
   
-  <header class="header">
-    <div class="logo">Smart University Search</div>
-    <p class="tagline">Your intelligent guide to finding the perfect university and navigating the admissions process with AI-powered recommendations</p>
-  </header>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#" class="navbar-logo">
+      <i class="fas fa-robot"></i> AI Social Media Automation
+    </a>
+    
+</nav>
   
   <div class="main-container">
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <h1 class="hero-title">Automate Your <span>Social Media Presence</span></h1>
+      <p class="hero-subtitle">
+        Effortlessly create, schedule, and post engaging content on LinkedIn, Facebook, TikTok, and YouTube with our AI-powered platform.
+      </p>
+    </section>
+    
     <!-- Stats Section -->
     <section class="stats-section">
       <h2 class="section-title">Our Impact</h2>
       <div class="stats-grid">
         <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-share-alt"></i></div>
+          <div class="stat-value">50,000+</div>
+          <div class="stat-label">Posts Created</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-globe"></i></div>
+          <div class="stat-value">4</div>
+          <div class="stat-label">Platforms Supported</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="stat-value">200%</div>
+          <div class="stat-label">Engagement Growth</div>
+        </div>
+        <div class="stat-card">
           <div class="stat-icon"><i class="fas fa-users"></i></div>
-          <div class="stat-value">25,000+</div>
-          <div class="stat-label">Students Helped</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
-          <div class="stat-value">1,500+</div>
-          <div class="stat-label">Universities</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-robot"></i></div>
-          <div class="stat-value">98%</div>
-          <div class="stat-label">Success Rate</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-lightbulb"></i></div>
-          <div class="stat-value">500K+</div>
-          <div class="stat-label">Recommendations</div>
+          <div class="stat-value">10,000+</div>
+          <div class="stat-label">Users</div>
         </div>
       </div>
     </section>
     
     <!-- Dashboard Graphs -->
     <section class="dashboard-section">
-      <h2 class="section-title">Admissions Insights</h2>
+      <h2 class="section-title">Social Media Insights</h2>
       <div class="graph-container">
         <div class="graph-card">
-          <h3 class="graph-title">Acceptance Rates by University Tier</h3>
-          <canvas id="acceptanceChart"></canvas>
+          <h3 class="graph-title">Engagement Rates by Platform</h3>
+          <canvas id="engagementChart"></canvas>
         </div>
         <div class="graph-card">
-          <h3 class="graph-title">Student Satisfaction by Major</h3>
-          <canvas id="satisfactionChart"></canvas>
+          <h3 class="graph-title">Posting Frequency Over Time</h3>
+          <canvas id="frequencyChart"></canvas>
         </div>
       </div>
     </section>
     
     <!-- Features Section -->
-    <section>
-      <h2 class="section-title">Why Choose Smart University Search?</h2>
+    <section id="features">
+      <h2 class="section-title">Automation Features</h2>
       <div class="features-container">
         <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-robot"></i>
-          </div>
-          <h3 class="feature-title">AI-Powered Matching</h3>
+          <div class="feature-icon"><i class="fas fa-video"></i></div>
+          <h3 class="feature-title">Video Editor</h3>
           <p class="feature-desc">
-            Our advanced algorithm matches you with universities that fit your academic profile, interests, and career goals perfectly.
+            Edit videos with AI-driven captions, overlays, and segment markers using FFmpeg or MoviePy for pro results.
           </p>
         </div>
         
         <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-calendar-alt"></i>
-          </div>
-          <h3 class="feature-title">Deadline Tracking</h3>
+          <div class="feature-icon"><i class="fas fa-robot"></i></div>
+          <h3 class="feature-title">AI Content Generator</h3>
           <p class="feature-desc">
-            Never miss an important date with personalized reminders for applications, tests, and financial aid deadlines.
+            Create engaging captions, stories, and scripts with AI models like Claude, Gemini, and Llama.
           </p>
         </div>
         
         <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
-          <h3 class="feature-title">Admissions Guidance</h3>
+          <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
+          <h3 class="feature-title">Auto-Scheduler</h3>
           <p class="feature-desc">
-            Get expert advice on essays, interviews, and everything you need to strengthen your application.
+            Schedule posts across platforms with optimal timing for maximum reach and engagement.
           </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
+          <h3 class="feature-title">Analytics Dashboard</h3>
+          <p class="feature-desc">
+            Track engagement, reach, and performance metrics in real-time to optimize your strategy.
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-hashtag"></i></div>
+          <h3 class="feature-title">Hashtag Generator</h3>
+          <p class="feature-desc">
+            Generate trending hashtags to boost discoverability on TikTok, YouTube, and other platforms.
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-users"></i></div>
+          <h3 class="feature-title">Audience Insights</h3>
+          <p class="feature-desc">
+            Analyze audience demographics and preferences to tailor content for better engagement.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Platforms Section -->
+    <section class="platforms-section">
+      <h2 class="section-title">Supported Platforms</h2>
+      <div class="platform-grid">
+        <div class="platform-card">
+          <div class="platform-image" style="background-image: url('https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"></div>
+          <div class="platform-content">
+            <h3 class="platform-name">TikTok</h3>
+            <p class="platform-type">Short-Form Video</p>
+            <div class="compatibility-percentage">92% Compatibility</div>
+            <p class="platform-desc">
+              Create and post viral videos with AI-generated scripts and automated editing for maximum reach.
+            </p>
+            <div class="platform-stats">
+              <span>Users: 1.5B+</span>
+              <span>Engagement: Very High</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="platform-card">
+          <div class="platform-image" style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"></div>
+          <div class="platform-content">
+            <h3 class="platform-name">LinkedIn</h3>
+            <p class="platform-type">Professional Networking</p>
+            <div class="compatibility-percentage">95% Compatibility</div>
+            <p class="platform-desc">
+              Automate posts, articles, and polls to enhance B2B engagement and network growth.
+            </p>
+            <div class="platform-stats">
+              <span>Users: 1B+</span>
+              <span>Engagement: High</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="platform-card">
+          <div class="platform-image" style="background-image: url('https://images.unsplash.com/photo-1611162616305-8b2b8b1e88b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"></div>
+          <div class="platform-content">
+            <h3 class="platform-name">YouTube</h3>
+            <p class="platform-type">Video Content</p>
+            <div class="compatibility-percentage">88% Compatibility</div>
+            <p class="platform-desc">
+              Automate video uploads, descriptions, and tags to grow your channel effortlessly.
+            </p>
+            <div class="platform-stats">
+              <span>Users: 2.5B+</span>
+              <span>Engagement: High</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="platform-card">
+          <div class="platform-image" style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e1c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"></div>
+          <div class="platform-content">
+            <h3 class="platform-name">Facebook</h3>
+            <p class="platform-type">Social Networking</p>
+            <div class="compatibility-percentage">90% Compatibility</div>
+            <p class="platform-desc">
+              Schedule posts, stories, and ads to connect with a global audience and drive community engagement.
+            </p>
+            <div class="platform-stats">
+              <span>Users: 3B+</span>
+              <span>Engagement: Moderate</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
     
     <!-- Experts Section -->
     <section class="experts-section">
-      <h2 class="section-title">Education Visionaries</h2>
-      
+      <h2 class="section-title">Social Media Visionaries</h2>
       <div class="experts-grid">
         <div class="expert-card">
-          <div class="expert-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a8/Bill_Gates_2017_%28cropped%29.jpg');"></div>
+          <div class="expert-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"></div>
           <div class="expert-content">
-            <h3 class="expert-name">Bill Gates</h3>
-            <p class="expert-title">Co-founder of Microsoft | Philanthropist</p>
+            <h3 class="expert-name">Laura Smith</h3>
+            <p class="expert-title">Social Media Strategist</p>
             <p class="expert-desc">
-              Harvard dropout who revolutionized personal computing and now focuses on global education through the Bill & Melinda Gates Foundation.
+              Expert in scaling TikTok campaigns with AI-driven content strategies for Gen Z audiences.
             </p>
             <p class="expert-quote">
-              "Technology is just a tool. In terms of getting the kids working together and motivating them, the teacher is the most important."
+              "Automation lets us focus on creativity while AI handles the execution."
             </p>
           </div>
         </div>
         
         <div class="expert-card">
-          <div class="expert-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg');"></div>
+          <div class="expert-image" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"></div>
           <div class="expert-content">
-            <h3 class="expert-name">Steve Jobs</h3>
-            <p class="expert-title">Co-founder of Apple | Visionary</p>
+            <h3 class="expert-name">Mark Johnson</h3>
+            <p class="expert-title">Digital Marketing Guru</p>
             <p class="expert-desc">
-              Reed College dropout who believed in connecting technology with liberal arts to create revolutionary products.
+              Boosted LinkedIn engagement for B2B brands using automated content strategies.
             </p>
             <p class="expert-quote">
-              "You can't connect the dots looking forward; you can only connect them looking backward. So you have to trust that the dots will somehow connect in your future."
+              "The right tools turn small teams into content powerhouses."
             </p>
           </div>
         </div>
         
         <div class="expert-card">
-          <div class="expert-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/01/Sir_Tim_Berners-Lee_%28cropped%29.jpg');"></div>
+          <div class="expert-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"></div>
           <div class="expert-content">
-            <h3 class="expert-name">Tim Berners-Lee</h3>
-            <p class="expert-title">Inventor of the World Wide Web</p>
+            <h3 class="expert-name">Sofia Lee</h3>
+            <p class="expert-title">YouTube Content Creator</p>
             <p class="expert-desc">
-              Oxford graduate who revolutionized how we access information and remains a champion for open education and net neutrality.
+              Grew a YouTube channel to 1M subscribers using AI for video editing and optimization.
             </p>
             <p class="expert-quote">
-              "The Web does not just connect machines, it connects people."
+              "AI automation frees me to create content my audience loves."
             </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Recommended Universities -->
-    <section class="universities-section">
-      <h2 class="section-title">Recommended For You</h2>
-      
-      <div class="university-grid">
-        <div class="university-card">
-          <div class="university-image" style="background-image: url('https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');"></div>
-          <div class="university-content">
-            <h3 class="university-name">Stanford University</h3>
-            <p class="university-location">Stanford, California</p>
-            <div class="match-percentage">92% Match</div>
-            <p class="university-desc">
-              Renowned for entrepreneurship and innovation, with top programs in computer science, engineering, and business.
-            </p>
-            <div class="university-stats">
-              <span>Acceptance: 4%</span>
-              <span>SAT: 1470-1570</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="university-card">
-          <div class="university-image" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');"></div>
-          <div class="university-content">
-            <h3 class="university-name">MIT</h3>
-            <p class="university-location">Cambridge, Massachusetts</p>
-            <div class="match-percentage">88% Match</div>
-            <p class="university-desc">
-              Global leader in science and technology education with cutting-edge research facilities and innovation labs.
-            </p>
-            <div class="university-stats">
-              <span>Acceptance: 7%</span>
-              <span>SAT: 1510-1580</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="university-card">
-          <div class="university-image" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');"></div>
-          <div class="university-content">
-            <h3 class="university-name">Carnegie Mellon</h3>
-            <p class="university-location">Pittsburgh, Pennsylvania</p>
-            <div class="match-percentage">85% Match</div>
-            <p class="university-desc">
-              Premier institution for computer science and arts, known for its interdisciplinary approach to education.
-            </p>
-            <div class="university-stats">
-              <span>Acceptance: 17%</span>
-              <span>SAT: 1460-1560</span>
-            </div>
           </div>
         </div>
       </div>
@@ -686,39 +1068,39 @@
       <div class="testimonial-grid">
         <div class="testimonial-card">
           <p class="testimonial-text">
-            "EduPath helped me discover universities I never would have considered. Their AI matched me with the perfect computer science program that aligned with my interests in AI research."
+            "This platform transformed our TikTok strategy. AI-generated videos are engaging, and auto-posting saves us hours weekly."
           </p>
           <div class="testimonial-author">
             <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg');"></div>
             <div class="author-info">
-              <h4>Sarah Johnson</h4>
-              <p>Stanford University '26</p>
+              <h4>Emma Wilson</h4>
+              <p>Content Creator, VibeMedia</p>
             </div>
           </div>
         </div>
         
         <div class="testimonial-card">
           <p class="testimonial-text">
-            "The application tracking system saved me so much stress. I got reminders for all my deadlines and personalized tips for each university's application requirements."
+            "The analytics dashboard doubled our LinkedIn engagement in a month by optimizing our posts."
           </p>
           <div class="testimonial-author">
             <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
             <div class="author-info">
-              <h4>Michael Chen</h4>
-              <p>MIT '25</p>
+              <h4>James Lee</h4>
+              <p>Marketing Manager, TechTrend</p>
             </div>
           </div>
         </div>
         
         <div class="testimonial-card">
           <p class="testimonial-text">
-            "As an international student, I was lost in the US admissions process. EduPath's guidance made everything clear and helped me secure scholarships at my top choices."
+            "Managing multiple brands across platforms is seamless. The scheduler is a game-changer for our team."
           </p>
           <div class="testimonial-author">
             <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/68.jpg');"></div>
             <div class="author-info">
-              <h4>Priya Patel</h4>
-              <p>UC Berkeley '27</p>
+              <h4>Sofia Patel</h4>
+              <p>Social Media Strategist, BrandBoost</p>
             </div>
           </div>
         </div>
@@ -727,13 +1109,68 @@
     
     <!-- CTA Section -->
     <div class="cta-section">
-      <a href="/index" class="cta-button">
-        <i class="fas fa-rocket"></i> Start Your Journey Today
+      <h2 class="section-title">Ready to Automate Your Social Media?</h2>
+      <a href="/signup" class="cta-button">
+        <i class="fas fa-rocket"></i> Start Automating Today
       </a>
     </div>
   </div>
   
-  <!-- Chatbot Navigation Button -->
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-about">
+        <div class="footer-logo">
+          <i class="fas fa-robot"></i> AI Social Media Automation
+        </div>
+        <p class="footer-about">
+          Streamline your social media strategy with our AI-powered platform, automating content creation and posting across LinkedIn, Facebook, TikTok, and YouTube.
+        </p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#">Social Media Guide</a></li>
+          <li><a href="#">Content Trends</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Webinars</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      © 2025 AI Social Media Automation. All rights reserved.
+    </div>
+  </footer>
+  
+  <!-- Chatbot Button -->
   <div class="chatbot-container">
     <button id="chatbotBtn" class="chatbot-btn" title="Chat with our advisor">
       <i class="fas fa-robot"></i>
@@ -780,27 +1217,25 @@
     });
 
     // Initialize Charts
-    const acceptanceCtx = document.getElementById('acceptanceChart').getContext('2d');
-    const acceptanceChart = new Chart(acceptanceCtx, {
+    const engagementCtx = document.getElementById('engagementChart').getContext('2d');
+    const engagementChart = new Chart(engagementCtx, {
       type: 'bar',
       data: {
-        labels: ['Ivy League', 'Top 20', 'Top 50', 'Top 100', 'State Flagships'],
+        labels: ['LinkedIn', 'Facebook', 'TikTok', 'YouTube'],
         datasets: [{
-          label: 'Acceptance Rate %',
-          data: [5, 12, 25, 40, 55],
+          label: 'Engagement Rate %',
+          data: [3.5, 2.8, 8.2, 4.1],
           backgroundColor: [
-            'rgba(67, 97, 238, 0.7)',
-            'rgba(76, 201, 240, 0.7)',
-            'rgba(42, 157, 143, 0.7)',
-            'rgba(244, 162, 97, 0.7)',
-            'rgba(230, 57, 70, 0.7)'
+            'rgba(67, 97, 238, 0.8)',
+            'rgba(76, 201, 240, 0.8)',
+            'rgba(42, 157, 143, 0.8)',
+            'rgba(244, 162, 97, 0.8)'
           ],
           borderColor: [
             'rgba(67, 97, 238, 1)',
             'rgba(76, 201, 240, 1)',
             'rgba(42, 157, 143, 1)',
-            'rgba(244, 162, 97, 1)',
-            'rgba(230, 57, 70, 1)'
+            'rgba(244, 162, 97, 1)'
           ],
           borderWidth: 1
         }]
@@ -809,73 +1244,56 @@
         responsive: true,
         plugins: {
           legend: {
-            labels: {
-              color: 'white'
-            }
+            labels: { color: 'white', font: { size: 14 } }
           }
         },
         scales: {
           y: {
             beginAtZero: true,
-            ticks: {
-              color: 'white'
-            },
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            }
+            ticks: { color: 'white', font: { size: 12 } },
+            grid: { color: 'rgba(255, 255, 255, 0.1)' }
           },
           x: {
-            ticks: {
-              color: 'white'
-            },
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            }
+            ticks: { color: 'white', font: { size: 12 } },
+            grid: { color: 'rgba(255, 255, 255, 0.1)' }
           }
         }
       }
     });
 
-    const satisfactionCtx = document.getElementById('satisfactionChart').getContext('2d');
-    const satisfactionChart = new Chart(satisfactionCtx, {
-      type: 'radar',
+    const frequencyCtx = document.getElementById('frequencyChart').getContext('2d');
+    const frequencyChart = new Chart(frequencyCtx, {
+      type: 'line',
       data: {
-        labels: ['Computer Science', 'Engineering', 'Business', 'Humanities', 'Arts', 'Sciences'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [{
-          label: 'Satisfaction Score',
-          data: [85, 82, 78, 72, 80, 75],
-          backgroundColor: 'rgba(76, 201, 240, 0.2)',
+          label: 'Posts Per Month',
+          data: [50, 75, 120, 100, 150, 200],
+          backgroundColor: 'rgba(76, 201, 240, 0.3)',
           borderColor: 'rgba(76, 201, 240, 1)',
           pointBackgroundColor: 'rgba(76, 201, 240, 1)',
           pointBorderColor: '#fff',
           pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(76, 201, 240, 1)'
+          pointHoverBorderColor: 'rgba(76, 201, 240, 1)',
+          fill: true
         }]
       },
       options: {
         responsive: true,
         plugins: {
           legend: {
-            labels: {
-              color: 'white'
-            }
+            labels: { color: 'white', font: { size: 14 } }
           }
         },
         scales: {
-          r: {
-            angleLines: {
-              color: 'rgba(255, 255, 255, 0.2)'
-            },
-            grid: {
-              color: 'rgba(255, 255, 255, 0.2)'
-            },
-            pointLabels: {
-              color: 'white'
-            },
-            ticks: {
-              backdropColor: 'transparent',
-              color: 'white'
-            }
+          y: {
+            beginAtZero: true,
+            ticks: { color: 'white', font: { size: 12 } },
+            grid: { color: 'rgba(255, 255, 255, 0.2)' }
+          },
+          x: {
+            ticks: { color: 'white', font: { size: 12 } },
+            grid: { color: 'rgba(255, 255, 255, 0.2)' }
           }
         }
       }
@@ -883,16 +1301,44 @@
 
     // Chatbot Button
     const chatbotBtn = document.getElementById('chatbotBtn');
-    
     chatbotBtn.addEventListener('click', () => {
-      // Add a nice transition effect before navigation
       chatbotBtn.style.transform = 'scale(1.2)';
       chatbotBtn.style.opacity = '0.8';
-      
       setTimeout(() => {
         window.location.href = '/index';
       }, 300);
     });
+
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('fa-bars');
+      hamburger.classList.toggle('fa-times');
+    });
+
+    // Scroll Animations
+    const animateElements = document.querySelectorAll('.section-title, .stat-card, .graph-card, .feature-card, .expert-card, .platform-card, .testimonial-card');
+    const animateOnScroll = () => {
+      animateElements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (elementPosition < windowHeight - 100) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    // Initial check
+    animateElements.forEach(element => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(50px)';
+      element.style.transition = 'all 0.8s ease';
+    });
+    animateOnScroll();
+    window.addEventListener('scroll', animateOnScroll);
   </script>
 </body>
 </html>
