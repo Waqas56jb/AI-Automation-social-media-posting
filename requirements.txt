@@ -1,0 +1,7 @@
+Flask
+python-dotenv 
+google-generativeai
+googletrans 
+pyttsx3 
+flask
+mysql-connector-python
