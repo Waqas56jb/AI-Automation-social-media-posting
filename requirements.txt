@@ -3,5 +3,9 @@ python-dotenv
 google-generativeai
 googletrans 
 pyttsx3 
-flask
 mysql-connector-python
+mysql-connector-python
+Werkzeug
+flask_session
+googletrans==4.0.0-rc1
+werkzeug

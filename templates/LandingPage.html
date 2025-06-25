@@ -415,7 +415,7 @@
       color: var(--dark-blue);
       padding: 0.3rem 1.5rem;
       border-radius: 0 0 10px 10px;
-      font-weight: 600;
+      font-weight: bold;
       font-size: 0.8rem;
     }
     
@@ -432,7 +432,7 @@
     
     .pricing-price {
       font-size: 3rem;
-      font-weight: 700;
+      font-weight: bold;
       margin-bottom: 1.5rem;
       color: var(--light-blue);
     }
@@ -519,7 +519,7 @@
     
     .footer-logo {
       font-size: 1.8rem;
-      font-weight: 700;
+      font-weight: bold;
       margin-bottom: 1rem;
       color: var(--white);
     }
@@ -730,8 +730,8 @@
     </div>
     
     <div class="auth-buttons">
-      <a href="./login.html" class="btn btn-outline animate__animated animate__fadeIn">Login</a>
-      <a href="./signup.html" class="btn btn-primary animate__animated animate__fadeIn">Register</a>
+      <a href="/login" onclick="navigate('login')" class="btn btn-outline animate__animated animate__fadeIn">Login</a>
+      <a href="/signup" onclick="navigate('signup')" class="btn btn-primary animate__animated animate__fadeIn">Register</a>
     </div>
   </nav>
   
@@ -744,7 +744,7 @@
       </p>
       <div class="cta-buttons">
         <a href="#features" class="btn btn-primary btn-lg animate__animated animate__fadeInLeft animate__delay-2s">Explore Features</a>
-        <a href="/signup" class="btn btn-secondary btn-lg animate__animated animate__fadeInRight animate__delay-2s">Get Started Free</a>
+        <a href="#" onclick="navigate('signup')" class="btn btn-secondary btn-lg animate__animated animate__fadeInRight animate__delay-2s">Get Started Free</a>
       </div>
     </div>
   </section>
@@ -893,7 +893,7 @@
           <li>5 posts per month</li>
           <li>Email support</li>
         </ul>
-        <a href="/signup" class="btn btn-outline">Get Started</a>
+        <a href="#" onclick="navigate('signup')" class="btn btn-outline">Get Started</a>
       </div>
       
       <div class="pricing-card popular animate-up delay-1">
@@ -907,12 +907,12 @@
           <li>Video editing features</li>
           <li>Priority support</li>
         </ul>
-        <a href="/signup" class="btn btn-primary">Choose Plan</a>
+        <a href="#" onclick="navigate('signup')" class="btn btn-primary">Choose Plan</a>
       </div>
       
       <div class="pricing-card animate-up delay-2">
         <h3 class="pricing-title">Enterprise</h3>
-        <div class="pricing-price">$199<span>/month</span></div>
+        <div class="pricing-price">$219<span>/month</span></div>
         <ul class="pricing-features">
           <li>All Pro features</li>
           <li>Multi-brand support</li>
@@ -920,7 +920,7 @@
           <li>Dedicated account manager</li>
           <li>Advanced analytics</li>
         </ul>
-        <a href="/signup" class="btn btn-outline">Choose Plan</a>
+        <a href="#" onclick="navigate('signup')" class="btn btn-outline">Choose Plan</a>
       </div>
     </div>
   </section>
@@ -976,13 +976,13 @@
         Join businesses worldwide in streamlining their social media strategy with our AI-powered platform.
       </p>
       <div class="cta-buttons animate-up delay-2">
-        <a href="/signup" class="btn btn-primary btn-lg">Get Started Free</a>
+        <a href="#" onclick="navigate('signup')" class="btn btn-primary btn-lg">Get Started Free</a>
       </div>
     </div>
   </section>
   
   <!-- Chatbot Toggle -->
-  <a href="http://127.0.0.1:5000/chatpage" class="chatbot-toggle animate__animated animate__pulse animate__infinite">
+  <a href="#" onclick="navigate('chatbot')" class="chatbot-toggle animate__animated animate__pulse animate__infinite">
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm4-4h-2v4H9v-4H7V8h2V6h4v2h2v4z" fill="#ffffff"/>
     </svg>
@@ -1115,6 +1115,22 @@
         target.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // Navigation function
+    async function navigate(page) {
+      try {
+        const response = await fetch(`/api/navigate/${page}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        document.open();
+        document.write(await response.text());
+        document.close();
+      } catch (error) {
+        console.error('Navigation error:', error);
+        alert('Error navigating to page. Please try again.');
+      }
+    }
   </script>
 </body>
 </html>

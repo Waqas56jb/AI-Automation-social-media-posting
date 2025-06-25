@@ -1,0 +1,15 @@
+2025-06-23 18:20:29,993 - INFO - Starting server initialization
+2025-06-23 18:20:31,033 - DEBUG - Loading .env file
+2025-06-23 18:20:31,070 - DEBUG - Flask app configured
+2025-06-23 18:20:31,070 - DEBUG - Database config: {'host': 'localhost', 'port': 3306, 'user': 'root', 'password': '1234', 'database': 'edupath_auth'}
+2025-06-23 18:22:55,985 - INFO - Starting server initialization
+2025-06-23 18:22:56,985 - DEBUG - Loading .env file
+2025-06-23 18:22:57,037 - DEBUG - Flask app configured
+2025-06-23 18:22:57,037 - DEBUG - Database config: {'host': 'localhost', 'port': 3306, 'user': 'root', 'password': '1234', 'database': 'edupath_auth'}
+2025-06-23 18:22:57,037 - DEBUG - Attempting to create database connection pool
+2025-06-23 18:25:25,477 - INFO - Starting server initialization
+2025-06-23 18:25:26,534 - DEBUG - MySQL Connector version: 9.3.0
+2025-06-23 18:25:26,534 - DEBUG - Loading .env file
+2025-06-23 18:25:26,577 - DEBUG - Flask app configured
+2025-06-23 18:25:26,577 - DEBUG - Database config: {'host': 'localhost', 'port': 3306, 'user': 'root', 'password': '1234', 'database': 'edupath_auth'}
+2025-06-23 18:25:26,577 - DEBUG - Testing single MySQL connection

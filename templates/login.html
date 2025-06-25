@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - EduPath</title>
-  <!-- Particles.js -->
+  <title>Login - AI Social Media Automation</title>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -18,14 +15,12 @@
       --white: #ffffff;
       --light-gray: #f8f9fa;
     }
-    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
-    
     body {
       background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
       display: flex;
@@ -34,7 +29,6 @@
       min-height: 100vh;
       overflow: hidden;
     }
-    
     #particles-js {
       position: absolute;
       width: 100%;
@@ -42,12 +36,11 @@
       background-color: var(--dark-blue);
       z-index: 0;
     }
-    
     .container {
       position: relative;
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
-      padding: 2.5rem;
+      padding: 1.5rem;
       border-radius: 20px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
       width: 380px;
@@ -56,45 +49,38 @@
       z-index: 1;
       transition: transform 0.3s ease;
     }
-    
     .container:hover {
       transform: translateY(-5px);
     }
-    
     .logo {
       margin-bottom: 1.5rem;
       color: var(--primary-blue);
       font-size: 2rem;
       font-weight: 700;
     }
-    
     h2 {
       color: var(--dark-blue);
       margin-bottom: 1.5rem;
       font-weight: 600;
     }
-    
     .input-group {
       position: relative;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.8rem;
     }
-    
     input {
       width: 100%;
       padding: 15px 20px 15px 45px;
       border: 2px solid rgba(67, 97, 238, 0.2);
-      border-radius: 10px;
+      border-radius: 4px;
       font-size: 1rem;
       background-color: var(--light-gray);
       transition: all 0.3s ease;
     }
-    
     input:focus {
       outline: none;
       border-color: var(--primary-blue);
       box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
     }
-    
     .input-icon {
       position: absolute;
       left: 15px;
@@ -103,7 +89,6 @@
       color: var(--primary-blue);
       font-size: 1.2rem;
     }
-    
     button {
       width: 100%;
       padding: 15px;
@@ -118,45 +103,39 @@
       margin-top: 0.5rem;
       box-shadow: 0 4px 15px rgba(58, 12, 163, 0.3);
     }
-    
     button:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(58, 12, 163, 0.4);
     }
-    
     .links {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       display: flex;
       flex-direction: column;
       gap: 0.8rem;
     }
-    
     a {
       color: var(--primary-blue);
       text-decoration: none;
       font-weight: 500;
       transition: all 0.2s ease;
     }
-    
     a:hover {
       color: var(--dark-blue);
       text-decoration: underline;
     }
-    
     #message {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       color: #e63946;
       font-weight: 500;
       min-height: 1.5rem;
     }
-    
     .wave-decoration {
       position: absolute;
       bottom: -10px;
       left: 0;
       width: 100%;
       height: 20px;
-      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%234361ee" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%234361ee" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%234361ee"/></svg>');
+      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%234361ee" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-56.24V0Z" fill="%234361ee" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%234361ee"/></svg>');
       background-size: cover;
       z-index: -1;
     }
@@ -164,38 +143,30 @@
 </head>
 <body>
   <div id="particles-js"></div>
-  
   <div class="container">
     <div class="wave-decoration"></div>
     <div class="logo">AI Automation</div>
     <h2>Welcome Back</h2>
-    
     <form id="loginForm">
       <div class="input-group">
         <i class="fas fa-envelope input-icon"></i>
         <input type="email" id="email" placeholder="Email Address" required>
       </div>
-      
       <div class="input-group">
         <i class="fas fa-lock input-icon"></i>
         <input type="password" id="password" placeholder="Password" required>
       </div>
-      
       <button type="submit">
         <i class="fas fa-sign-in-alt"></i> Login
       </button>
     </form>
-    
     <div class="links">
-      <a href="./signup.html">Don't have an account? Sign Up</a>
-      <a href="./forget.html">Forgot Password?</a>
+      <a href="#" onclick="navigate('signup')">Don't have an account? Sign Up</a>
+      <a href="#" onclick="navigate('forgot password')">Forgot Password?</a>
     </div>
-    
     <p id="message"></p>
   </div>
-
   <script>
-    // Initialize particles.js
     particlesJS('particles-js', {
       particles: {
         number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -219,37 +190,28 @@
       },
       retina_detect: true
     });
-
-    // Login form submission
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const messageElement = document.getElementById('message');
-      
-      // Clear previous messages
       messageElement.textContent = '';
-      
-      // Add loading state
       const submitBtn = e.target.querySelector('button');
       const originalBtnText = submitBtn.innerHTML;
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
       submitBtn.disabled = true;
-
       try {
-        const response = await fetch('/login', {
+        const response = await fetch('/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })
         });
-        
         const data = await response.json();
         messageElement.textContent = data.message;
-        
         if (response.status === 200) {
           messageElement.style.color = '#2a9d8f';
           setTimeout(() => {
-            window.location.href = '/profile';
+            window.location.href = data.redirect;
           }, 1000);
         } else {
           messageElement.style.color = '#e63946';
@@ -262,6 +224,16 @@
         submitBtn.disabled = false;
       }
     });
+    async function navigate(page) {
+      try {
+        const response = await fetch(`/api/navigate/${page}`);
+        document.open();
+        document.write(await response.text());
+        document.close();
+      } catch (error) {
+        alert('Error navigating to page');
+      }
+    }
   </script>
 </body>
 </html>
